@@ -1,0 +1,39 @@
+[
+  {
+    "field": "action",
+    "type": "text",
+    "header": "Action",
+    "columnWidth": "10"
+  },
+  {
+    "field": "name",
+    "type": "text",
+    "header": "Account Name",
+    "columnWidth": "15"
+  },
+  {
+    "field": "parentAccountName",
+    "type": "text",
+    "header": "Parent Account",
+    "columnWidth": "15"
+  },
+  {
+    "field": "accountTypeName",
+    "type": "text",
+    "header": "Account Type",
+    "columnWidth": "15"
+  },
+  {
+    "field": "createdBy",
+    "type": "text",
+    "header": "Created By",
+    "columnWidth": "15"
+  },
+  {
+    "field": "createdDate",
+    "type": "date",
+    "header": "Created Date",
+    "columnWidth": "15",
+    "align": "center"
+  }
+]

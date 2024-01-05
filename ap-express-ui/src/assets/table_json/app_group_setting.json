@@ -1,0 +1,27 @@
+[
+  {
+    "field": "action",
+    "type": "text",
+    "header": "Action",
+    "columnWidth": "10"
+  },
+  {
+    "field": "name",
+    "type": "text",
+    "header": "Approval Groups Name",
+    "columnWidth": "30"
+  },
+  {
+    "field": "createdBy",
+    "type": "text",
+    "header": "Created By",
+    "columnWidth": "30"
+  },
+  {
+    "field": "createdDate",
+    "type": "date",
+    "header": "Created Date",
+    "columnWidth": "30",
+    "align": "center"
+  }
+]

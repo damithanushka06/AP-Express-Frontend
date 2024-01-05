@@ -1,0 +1,16 @@
+<app-table [setting]="itemSetting" [data]="itemList" (id)="itemId = $event.id; item = $event"
+           (delete)="deleteItem(itemId)" (edit)="showModal()" [items]="items"
+></app-table>
+
+<!-- This is a item update modal -->
+<c-modal  #staticBackdropModal backdrop="static" id="itemList" size="xl">
+  <c-modal-header>
+    <h5 cModalTitle>Update Item #{{item?.number}}</h5>
+    <button [cModalToggle]="staticBackdropModal.id" cButtonClose (click)="hideModal()"></button>
+  </c-modal-header>
+  <c-modal-body>
+    <app-create-item (success)="hideModal(); getAllItemList()" [itemId]="itemId"
+                     [isEdit]="isEditItem" *ngIf="isEditItem"></app-create-item>
+  </c-modal-body>
+</c-modal>
+

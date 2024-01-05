@@ -1,0 +1,3 @@
+<app-table [setting]="paymentSetting" [data]="paymentList" (id)="paymentId = $event.id"
+           (delete)="deleteItem(paymentId)" [items]="items"
+></app-table>

@@ -1,0 +1,17 @@
+<app-table [setting]="accountSetting" [data]="accountList" (id)="accountId = $event.id; acc = $event"
+           (delete)="deleteAccount(accountId)" (edit)="showModal()" [items]="items"
+></app-table>
+
+<!-- This is a account update modal -->
+<c-modal  #staticBackdropModal backdrop="static" id="accountList" size="xl" >
+  <c-modal-header>
+    {{acc | json}}
+    <h5 cModalTitle>Update account #{{acc?.number}}</h5>
+    <button [cModalToggle]="staticBackdropModal.id" cButtonClose (click)="hideModal()"></button>
+  </c-modal-header>
+  <c-modal-body>
+    <app-create-account (success)="hideModal(); getAllAccountList()" [accountId]="accountId"
+                     [isEdit]="isEditAccount" *ngIf="isEditAccount"></app-create-account>
+  </c-modal-body>
+</c-modal>
+

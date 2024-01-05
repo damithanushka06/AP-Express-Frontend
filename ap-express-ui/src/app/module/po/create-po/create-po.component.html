@@ -1,0 +1,103 @@
+<div class="card">
+  <div class="card-body">
+    <form class="row g-3 needs-validation" [formGroup]="poCreateForm">
+
+      <div class="col-md-4">
+        <label for="poNumber" class="form-label">PO Number*</label>
+        <input type="text" class="form-control" formControlName="poNo" id="poNumber">
+        <div *ngIf="(!f['poNo'].valid && f['poNo'].dirty)" class="invalid">PO Number is required.</div>
+      </div>
+
+      <div class="col-md-4">
+        <label for="vendorId" class="form-label">Vendor*</label>
+        <ng-select class="custom" [items]="dropDownUtility.vendorList.data"
+                   bindLabel="name"
+                   bindValue="id" id="vendorId"
+                   formControlName="vendorId">
+        </ng-select>
+        <div class="invalid" *ngIf="(!f['vendorId'].valid && f['vendorId'].dirty)">Vendor is required.</div>
+      </div>
+
+      <div class="col-4 p-fluid">
+        <label for="orderDate">Order Date*</label>
+        <div class="full-width">
+          <p-calendar id="orderDate" dateFormat="mm-dd-yy" [showIcon]="true" [showButtonBar]="true"
+                      class="pCalender"
+                      formControlName="orderDate" inputId="billDate"></p-calendar>
+          <div class="invalid" *ngIf="!f['orderDate'].valid && (f['orderDate'].dirty || f['orderDate'].touched)">
+            Order Date is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="col-4 p-fluid">
+        <label for="orderDate">Delivery Date*</label>
+        <div class="full-width">
+          <p-calendar id="deliveryDate" dateFormat="mm-dd-yy" [showIcon]="true" [showButtonBar]="true"
+                      class="pCalender"
+                      formControlName="deliveryDate" inputId="deliveryDate"></p-calendar>
+          <div class="invalid" *ngIf="!f['deliveryDate'].valid && (f['deliveryDate'].dirty || f['deliveryDate'].touched)">
+            Delivery Date is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-8">
+        <label for="notes" class="form-label">Notes</label>
+        <textarea type="text" class="form-control" formControlName="notes" rows="1" id="notes"></textarea>
+      </div>
+
+
+      <c-nav variant="pills" class="mt-5">
+        <c-nav-item>
+          <a [active]="true" [cTabContent]="tabContent" [tabPaneIdx]="0" cNavLink>
+            Item Information
+          </a>
+        </c-nav-item>
+        <c-nav-item>
+          <a [cTabContent]="tabContent" [tabPaneIdx]="1" cNavLink>
+            Account Information
+          </a>
+        </c-nav-item>
+      </c-nav>
+
+      <c-tab-content #tabContent="cTabContent" [activeTabPaneIdx]="1">
+        <c-tab-pane class="p-3">
+
+          <app-item-information-table *ngIf="isEdit ? itemLength : true"
+                                      [isEdit]="isEdit"
+                                      (initializedItem)="poCreateForm.get('poItemInformation')?.patchValue(poItemInformation)"
+                                      [formGroup]="poCreateForm" [itemLength]="itemLength">
+          </app-item-information-table>
+
+        </c-tab-pane>
+
+        <c-tab-pane class="p-3">
+          <app-account-information-table *ngIf="isEdit ? accountLength : true"
+                                         [isEdit]="isEdit"
+                                         (initializedAccount)="poCreateForm.get('poAccountInformation')?.
+                                         patchValue(poAccountInformation)"
+                                         [formGroup]="poCreateForm" [accountLength]="accountLength">
+          </app-account-information-table>
+        </c-tab-pane>
+
+        <app-module-table-calculation [isShowTax]="true" [formGroup]="poCreateForm">
+        </app-module-table-calculation>
+
+      </c-tab-content>
+
+      <app-drop-zone (selectedFiles)="files = $event"></app-drop-zone>
+
+      <app-common-work-flow [formGroup]="poCreateForm" *ngIf="poCreateForm"
+                            [approvalUserList]="dropDownUtility.userList"
+                            [approvalGroupList]="dropDownUtility.approvalGroupList">
+      </app-common-work-flow>
+
+      <div class="col-12 footer-button-style pb-2">
+        <app-form-button [isEdit]="isEdit" [formGroup]="poCreateForm" (submit)="submitForm()"
+                         (update)="updatePo()"></app-form-button>
+      </div>
+    </form>
+
+  </div>
+</div>

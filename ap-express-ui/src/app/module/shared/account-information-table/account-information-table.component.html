@@ -1,0 +1,53 @@
+<form [formGroup]="formGroup">
+<table [striped]="true" bordered cTable>
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Account Number</th>
+    <th scope="col">Account Name</th>
+    <th scope="col">Account Description</th>
+    <th scope="col">Line Amount</th>
+    <th class="t-a-c" scope="col">Action</th>
+  </tr>
+  </thead>
+  <tbody [formArrayName]="isFromBill? 'billAccountInformation' : 'poAccountInformation'">
+  <ng-container *ngFor="let account of accountInformation.controls; let i = index">
+    <tr [formGroupName]="i">
+      <td>{{i + 1}}</td>
+      <td>
+        <ng-select class="custom" [items]="dropDownUtility.accountList.data"
+                   bindLabel="name" (change)="getAccountNameById($event.id, account)"
+                   bindValue="id" id="accNo"
+                   formControlName="accountId">
+        </ng-select>
+      </td>
+      <td>
+        <input type="text" class="form-control"
+               [readOnly]="true"
+               formControlName="accountName" id="accName">
+      </td>
+      <td>
+        <input type="text" class="form-control" formControlName="accDescription"
+               id="accDescription">
+      </td>
+
+      <td>
+        <input type="text" class="form-control"
+               placeholder="0.00"
+               (keyup)="calculationUtility.calculateAccountInformationTotal(accountInformation, i, formGroup)"
+               formControlName="lineAmount" id="lineAmount"
+               currencyMask>
+      </td>
+
+      <td class="t-a-c">
+        <i class="detail-table-action fa fa-trash" *ngIf="accountInformation.controls.length > 1"
+           (click)="removeAccount(i)"></i>&nbsp;
+        <i class="detail-table-action fa fa-plus" *ngIf="(i == accountInformation.controls.length -1)"
+           (click)="addAccountControls()"></i>
+      </td>
+
+    </tr>
+  </ng-container>
+  </tbody>
+</table>
+</form>

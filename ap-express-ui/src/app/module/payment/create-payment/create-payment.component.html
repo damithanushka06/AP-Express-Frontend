@@ -1,0 +1,67 @@
+<div class="card">
+  <div class="card-body">
+    <form class="row g-3 needs-validation" [formGroup]="paymentCreateForm">
+
+      <div class="col-md-4">
+        <label for="referenceNo" class="form-label">Reference Number*</label>
+        <input type="text" class="form-control" formControlName="referenceNo" id="referenceNo">
+        <div *ngIf="(!f['referenceNo'].valid && f['referenceNo'].dirty)" class="invalid">Bill Number is required.</div>
+      </div>
+
+      <div class="col-md-4">
+        <label for="vendorId" class="form-label">Vendor*</label>
+        <ng-select class="custom" [items]="dropDownUtility.vendorList.data"
+                   bindLabel="name" (change)="dropDownUtility.getVendorRelatedBillDropDownList(f['vendorId'].value)"
+                   bindValue="id" id="vendorId"
+                   formControlName="vendorId">
+        </ng-select>
+        <div class="invalid" *ngIf="(!f['vendorId'].valid && f['vendorId'].dirty)">Vendor is required.</div>
+      </div>
+
+      <div class="col-md-4">
+        <label for="billId" class="form-label">Bill Number*</label>
+        <ng-select class="custom" [items]="dropDownUtility.vendorRelatedBillList.data"
+                   bindLabel="name" (change)="getBillRemainingBalance(f['billId'].value)"
+                   bindValue="id" id="billId"
+                   formControlName="billId">
+        </ng-select>
+        <div class="invalid" *ngIf="(!f['billId'].valid && f['billId'].dirty)">Bill Number is required.</div>
+      </div>
+
+
+      <div class="col-md-4">
+        <label for="paymentDate" class="form-label">Payment Date*</label><br>
+        <input name="paymentDate" id="paymentDate" formControlName="paymentDate"
+               type="date" class="custom-date-input">
+        <div class="invalid" *ngIf="!f['paymentDate'].valid && (f['paymentDate'].dirty || f['paymentDate'].touched)">
+          Bill Date is required.
+        </div>
+      </div>
+
+
+      <div class="col-md-4">
+        <label for="amount" class="form-label">Payment Amount*</label>
+        <input currencyMask type="text" class="form-control" formControlName="amount" id="amount">
+        <div *ngIf="(!f['amount'].valid && f['amount'].dirty)" class="invalid">Amount is required.</div>
+      </div>
+
+      <div class="col-md-4">
+        <label for="billBalance" class="form-label">Bill Balance</label>
+        <input  [readOnly]="true" currencyMask
+          type="text" class="form-control" formControlName="billBalance" id="billBalance">
+      </div>
+
+
+      <div class="col-md-12">
+        <label for="notes" class="form-label">Notes</label>
+        <textarea type="text" class="form-control" formControlName="notes" rows="1" id="notes"></textarea>
+      </div>
+
+      <div class="col-12 footer-button-style pb-2">
+        <app-form-button [isEdit]="false" (goToList)="router.navigateByUrl('/home/payment/payment-list')"
+                         [formGroup]="paymentCreateForm" (submit)="submitForm()"></app-form-button>
+      </div>
+
+    </form>
+  </div>
+</div>

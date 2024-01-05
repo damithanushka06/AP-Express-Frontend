@@ -1,0 +1,18 @@
+<div class="row t-a-r">
+
+  <div class="pull-right">
+    <button type="button" class="btn btn-ghost-info" *ngIf="(currentLevel !== numberOfWorkFlowLevel)"
+            (click)="approve.emit()">Approve</button>&nbsp;
+
+    <button class="btn btn-primary" type="button"  *ngIf="(currentLevel === numberOfWorkFlowLevel)"
+            (click)="approveAndFinalize.emit()">Approve & Finalize
+    </button>&nbsp;
+
+    <button class="btn btn-danger" type="button" *ngIf="!isRejected"
+            (click)="reject.emit()">Reject
+    </button>
+
+  </div>
+
+
+</div>

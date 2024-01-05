@@ -1,0 +1,16 @@
+<app-table [setting]="poSetting" [data]="poList" (id)="poId = $event.id; po = $event"
+           [items]="items"
+           (delete)="deleteItem(poId)" (edit)="showModal()" (download)="downloadPO(poId)"
+></app-table>
+
+<!-- This is a item update modal -->
+<c-modal  #staticBackdropModal backdrop="static" id="poList" size="xl" [fullscreen]="true">
+  <c-modal-header>
+    <h5 cModalTitle>Update PO #{{po?.poNo}}</h5>
+    <button [cModalToggle]="staticBackdropModal.id" cButtonClose (click)="hideModal()"></button>
+  </c-modal-header>
+  <c-modal-body>
+    <app-create-po (success)="hideModal(); getAllPOList()" [poId]="poId"
+                     [isEdit]="isEditPo" *ngIf="isEditPo"></app-create-po>
+  </c-modal-body>
+</c-modal>

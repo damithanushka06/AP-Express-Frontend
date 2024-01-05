@@ -1,0 +1,18 @@
+<app-table [setting]="vendorSetting" [data]="vendorList" (id)="vendorId = $event.id; vendor = $event"
+           [items]="items"
+           (delete)="deletevendor(vendorId)" (edit)="showModal()"
+></app-table>
+
+
+<!-- This is a user update modal -->
+<c-modal  #staticBackdropModal backdrop="static" id="vendorList" size="xl" [fullscreen]="true">
+  <c-modal-header>
+    <h5 cModalTitle>Update {{vendor?.name}}</h5>
+    <button [cModalToggle]="staticBackdropModal.id" cButtonClose (click)="hideModal()"></button>
+  </c-modal-header>
+  <c-modal-body>
+    <app-create-vendor (success)="hideModal(); getAllVendorList()" [vendorId]="vendorId"
+                     [isEdit]="isEditVendor" *ngIf="isEditVendor"></app-create-vendor>
+  </c-modal-body>
+</c-modal>
+

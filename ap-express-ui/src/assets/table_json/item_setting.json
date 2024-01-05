@@ -1,0 +1,46 @@
+[
+  {
+    "field": "action",
+    "type": "text",
+    "header": "Action",
+    "columnWidth": "10"
+  },
+  {
+    "field": "name",
+    "type": "text",
+    "header": "Item Name",
+    "columnWidth": "20"
+  },
+  {
+    "field": "categoryName",
+    "type": "text",
+    "header": "Category",
+    "columnWidth": "20"
+  },
+  {
+    "field": "uomName",
+    "type": "text",
+    "header": "UOM",
+    "columnWidth": "20"
+  },
+  {
+    "field": "unitPrice",
+    "type": "text",
+    "header": "Unit Price",
+    "columnWidth": "20",
+    "align": "right"
+  },
+  {
+    "field": "createdBy",
+    "type": "text",
+    "header": "Created By",
+    "columnWidth": "20"
+  },
+  {
+    "field": "createdDate",
+    "type": "date",
+    "header": "Created Date",
+    "columnWidth": "20",
+    "align": "center"
+  }
+]

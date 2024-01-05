@@ -1,0 +1,69 @@
+<div class="card">
+  <div class="card-body">
+
+    <form class="row g-3 needs-validation" [formGroup]="accountCreateForm">
+
+      <div class="col-md-4">
+        <label for="name" class="form-label">Account Number*</label>
+        <input type="text" class="form-control" formControlName="number" id="accNo">
+        <div *ngIf="(!f['number'].valid && f['number'].dirty)" class="invalid">Account Number is required.</div>
+      </div>
+
+      <div class="col-md-4">
+        <label for="name" class="form-label">Name*</label>
+        <input type="text" class="form-control" formControlName="name" id="name">
+        <div *ngIf="(!f['name'].valid && f['name'].dirty)" class="invalid">Name is required.</div>
+      </div>
+
+      <div class="col-md-4">
+        <label for="accountType" class="form-label">Account Type*</label>
+        <ng-select class="custom" [items]="accountTypeList.data"
+                   bindLabel="name"
+                   bindValue="id" id="accountType"
+                   formControlName="accountTypeId">
+        </ng-select>
+        <div class="invalid" *ngIf="(!f['accountTypeId'].valid && f['accountTypeId'].dirty)">Account type is required.</div>
+      </div>
+
+      <div class="col-md-4">
+        <label for="parentAccountId" class="form-label">Parent Account</label>
+        <ng-select class="custom" [items]="parentAccountList.data"
+                   bindLabel="name"
+                   bindValue="id" id="parentAccountId"
+                   formControlName="parentAccountId">
+        </ng-select>
+      </div>
+
+      <div class="col-md-8">
+        <label for="description" class="form-label">Description</label>
+        <textarea type="text" class="form-control" formControlName="description" rows="1" id="description"></textarea>
+      </div>
+
+      <div class="col-12">
+
+        <div class="pull-right">
+
+          <button type="button" class="btn btn-ghost-info" *ngIf="!isEdit"
+                  (click)="router.navigateByUrl('/home/account/account-list')">Go To List</button>&nbsp;
+
+          <button class="btn btn-outline-dark" type="button"
+                  (click)="resetAccountForm()">Reset
+          </button>&nbsp;
+
+          <button class="btn btn-primary " type="submit" [disabled]="accountCreateForm.invalid"
+                  *ngIf="!isEdit"
+                  (click)="submitAccountData()">Submit form
+          </button>
+
+          <button class="btn btn-primary " type="submit" [disabled]="accountCreateForm.invalid"
+                  *ngIf="isEdit"
+                  (click)="updateAccountData()">Update
+          </button>
+        </div>
+
+      </div>
+
+    </form>
+
+  </div>
+</div>

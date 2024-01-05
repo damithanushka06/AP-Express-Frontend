@@ -1,0 +1,347 @@
+//nav styles
+
+.sidebar-nav .nav-group-toggle:hover {
+  color: aliceblue;
+  font-weight: 500;
+}
+
+//form validation related styles
+
+.invalid {
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 0.875em;
+  color: $color-error-red;
+}
+
+//common field validation
+
+.invalid-field-dirty {
+  border-color: red !important; /* border color when invalid */
+  box-shadow: 0 0 0 0.2rem $invalid-box-shadow; /* box shadow when invalid */
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; /* transition when invalid */
+}
+
+.invalid-field-focus {
+  border-color: red !important; /* border color when invalid and in focus */
+  box-shadow: $color-error-red; /* box shadow when invalid and in focus */
+}
+
+//field validation popup colors
+
+.form-control.ng-invalid.ng-dirty {
+  @extend .invalid-field-dirty;
+}
+
+.form-control.ng-invalid.ng-dirty:focus {
+  @extend .invalid-field-focus;
+}
+
+//ng-select styles
+
+.ng-select.custom {
+  .ng-select-container {
+    min-height: 20px !important;
+
+    &:focus-within {
+      box-shadow: 0 0 0 0.25rem $ng-select-box-shadow;
+      border-color: $input-border;
+    }
+  }
+}
+
+//dropdown field validation popup colors
+
+.ng-select.custom.ng-invalid.ng-dirty {
+  .ng-select-container {
+    min-height: 20px !important;
+    @extend .invalid-field-dirty;
+  }
+}
+
+.ng-select.custom.ng-invalid.ng-dirty:focus {
+  .ng-select-container {
+    min-height: 20px !important;
+    @extend .invalid-field-focus;
+  }
+}
+
+//table styles
+
+/* ############################################################################################################### */
+
+
+.custom-table table th, td {
+  //border: 1px solid $table-boarder !important;
+}
+
+.custom-table table th {
+  background: $table-header;
+}
+
+.custom-table table td ng2-st-tbody-custom a {
+  text-align: center;
+  margin-right: 10px;
+}
+
+.custom-table table tr th ng2-st-add-button {
+  display: none !important;
+}
+
+.table-action {
+  font-size: 16px;
+  margin-right: 3px;
+}
+
+.detail-table-action {
+  padding: 3px;
+  background: var(--cui-btn-color);
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: border-color 0.3s ease; /* Add transition for smooth effect */
+}
+
+.detail-table-action:hover {
+  border: 0px solid blue; /* Change border color on hover */
+  box-shadow: 0 0 5px rgba(0, 0, 255, 0.5); /* Add a subtle box shadow on hover */
+}
+
+
+.ng2-smart-actions ng2-st-tbody-custom {
+  display: flex;
+  align-items: center;
+  overflow: auto;
+}
+
+.ng2-smart-action-add-add {
+  display: none !important;
+}
+
+ng2-smart-table{
+  max-height: 81vh;
+  overflow: auto;
+}
+
+.custom-table th:first-child,
+.custom-table td:first-child {
+  width: auto; /* Adjust the width as needed */
+  text-align: center;
+}
+
+.custom-table th:last-child,
+.custom-table td:last-child {
+  width: auto; /* Adjust the width as needed */
+}
+
+.custom-table th,
+.custom-table td {
+  width: auto; /* Adjust the width as needed */
+  overflow-x: auto;
+}
+
+.table-container {
+  overflow-x: auto;
+  max-height: 85vh;
+}
+
+
+
+/* ############################################################################################################### */
+
+//nav tabs
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  background-color: transparent !important;
+  color: var(--cui-link-hover-color);
+  text-decoration: underline;
+}
+
+//card related styles
+
+.card-body {
+  max-height: 81vh;
+  overflow: auto;
+}
+
+//footer buttons style
+
+.footer-button-style {
+  bottom: 0;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  text-align: right;
+  background-color: rgba(255, 255, 255, 0.8); /* Add a background color with transparency */
+}
+
+
+//text alignment
+
+.t-a-c {
+  padding: 15px;
+  text-align: center;
+}
+
+.t-a-r {
+  text-align: right !important;
+
+  input {
+    text-align: right !important;
+  }
+}
+
+.datepicker-default {
+  background-color: #f2f2f2;
+  color: #333333;
+}
+.datepicker-default {
+  .calendar-container {
+    background: #32A8E4;
+    border: 1px solid #32A8E4;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .3);
+    top: 35px;
+    left: 0;
+    font-weight: 700;
+  }
+
+  .month-year-text {
+    color: #ffffff;
+  }
+
+  .control {
+    path {
+      fill: #eff1f5;
+    }
+
+    &:hover {
+      path {
+        fill: #ffffff;
+      }
+    }
+  }
+
+  .day-name-unit {
+    color: #fafafa;
+  }
+
+  .day-unit,
+  .year-unit {
+    color: #ffffff;
+  }
+
+  &.is-prev-month {
+    color: #8ed0f0;
+  }
+
+  &.is-today {
+    background: #8ed0f0;
+  }
+
+  &:hover,
+  &.is-selected {
+    background: #ffffff;
+    color: #686669;
+  }
+
+  &.is-disabled {
+    color: #aaa8ab;
+
+    &:hover {
+      background: transparent;
+    }
+  }
+}
+
+//card related styles
+.card-body {
+  max-height: 81vh;
+  overflow: auto;
+}
+
+.custom-date-input {
+  /* Apply your custom styles here */
+  /* For example: */
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  padding: 7px;
+  font-size: 14px;
+  width: 100%;
+}
+
+//chart related styles
+.dashboard-chart{
+  min-height: 70vh;
+}
+
+//primeNg style override
+
+.p-inputtext{
+  height: 38px !important;
+  width: 355px !important;
+}
+
+.p-inputtext:enabled:hover {
+  border-color: $input-border !important;
+}
+
+.p-inputtext:enabled:focus {
+  box-shadow: 0 0 0 0.25rem $ng-select-box-shadow !important;
+  border-color: $input-border !important;
+}
+
+.full-width{
+  width: 100% !important;
+  padding-top: 6px;
+}
+
+.pCalender span .p-button{
+  height: 38px !important;
+}
+
+
+//Detail view / Approve view related styles
+
+.row-label {
+  display: block;
+  font-size: 14px; /* Adjust the font size for labels */
+  margin-bottom: 5px; /* Adjust the margin as needed for spacing */
+}
+
+.row-value {
+  display: block;
+  font-size: 16px; /* Adjust the font size for values */
+}
+
+.detail-row{
+  margin-bottom: 10px; /* Adjust the margin as needed for spacing between all rows */
+}
+
+//Override primeNG table styles
+
+.p-datatable .p-datatable-tbody > tr > td {
+  padding: 3px 8px !important;
+}
+
+.p-splitbutton .p-splitbutton-defaultbutton,
+.p-splitbutton.p-button-rounded>.p-splitbutton-defaultbutton.p-button,
+.p-splitbutton.p-button-outlined>.p-splitbutton-defaultbutton.p-button {
+  width: 80px!important;
+  height: 20px !important;
+  padding: 14px !important;
+}
+
+.p-splitbutton-menubutton, .p-splitbutton.p-button-rounded>.p-splitbutton-menubutton.p-button
+.p-splitbutton.p-button-outlined>.p-splitbutton-menubutton.p-button {
+  width: 25px!important;
+  height: 20px !important;
+  padding: 14px !important;
+}
+
+//main card
+
+@media (min-width: 1400px) {
+  .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container {
+    max-width: 1759px !important;
+  }
+}

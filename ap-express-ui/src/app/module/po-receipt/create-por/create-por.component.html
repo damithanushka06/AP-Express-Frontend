@@ -1,0 +1,133 @@
+<div class="card">
+  <div class="card-body">
+    <form class="row g-3 needs-validation" [formGroup]="porCreateForm">
+
+      <div class="col-md-4">
+        <label for="poNumber" class="form-label">POR Number*</label>
+        <input type="text" class="form-control" formControlName="porNumber" id="poNumber">
+        <div *ngIf="(!f['porNumber'].valid && f['porNumber'].dirty)" class="invalid">PO Receipt Number is required.</div>
+      </div>
+
+      <div class="col-md-4">
+        <label for="vendorId" class="form-label">Vendor*</label>
+        <ng-select class="custom" [items]="dropDownUtility.vendorList.data"
+                   bindLabel="name" (change)="dropDownUtility.getVendorRelatedPoList(f['vendorId'].value)"
+                   bindValue="id" id="vendorId"
+                   formControlName="vendorId">
+        </ng-select>
+        <div class="invalid" *ngIf="(!f['vendorId'].valid && f['vendorId'].dirty)">Vendor is required.</div>
+      </div>
+
+      <div class="col-md-4">
+        <label for="vendorId" class="form-label">PO Number*</label>
+        <ng-select class="custom" [items]="vendorRelatedPOList.data"
+                   bindLabel="name" (change)="getPORelatedItemList(f['poId'].value)"
+                   bindValue="id" id="poId"
+                   formControlName="poId">
+        </ng-select>
+        <div class="invalid" *ngIf="(!f['poId'].valid && f['poId'].dirty)">Vendor is required.</div>
+      </div>
+
+      <div class="col-md-4">
+        <label for="orderDate" class="form-label">Received Date*</label><br>
+        <input name="orderDate" id="orderDate" formControlName="receivedDate"
+               type="date" class="custom-date-input">
+        <div class="invalid" *ngIf="!f['receivedDate'].valid && (f['receivedDate'].dirty || f['receivedDate'].touched)">
+          Received Date is required.
+        </div>
+      </div>
+
+      <c-nav variant="pills" class="mt-5">
+        <c-nav-item>
+          <a [active]="true" [cTabContent]="tabContent" [tabPaneIdx]="0" cNavLink>
+            Item Information
+          </a>
+        </c-nav-item>
+      </c-nav>
+
+      <c-tab-content #tabContent="cTabContent" [activeTabPaneIdx]="1">
+        <c-tab-pane class="p-3">
+
+          <table [striped]="true" bordered cTable class="custom-table">
+            <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">item number</th>
+              <th scope="col">Item Name</th>
+              <th scope="col">Received Qty</th>
+              <th scope="col">Remaining Qty</th>
+              <th scope="col">Unit Price</th>
+              <th scope="col">Line Amount</th>
+            </tr>
+            </thead>
+
+            <tbody formArrayName="porItemInformationList">
+
+            <ng-container *ngFor="let item of itemInformation.controls; let i = index">
+              <tr [formGroupName]="i">
+
+                <td>{{i + 1}}</td>
+
+                <td>
+                  <input [readOnly]="true" type="text" class="form-control" formControlName="itemNumber" id="itemId">
+                </td>
+
+                <td>
+                  <input [readOnly]="true" type="text" class="form-control" formControlName="itemName" id="itemName">
+                </td>
+
+                <td class="t-a-r">
+                  <input  type="text" class="form-control" numberOnly (keyup)="calculate(item)"
+                          formControlName="receivedQty" id="receivedQty">
+                </td>
+
+                <td class="t-a-r">
+                  <input numberOnly type="text" [readOnly]="true"
+                         class="form-control" formControlName="remainingQty" id="remainingQty">
+                </td>
+
+                <td>
+                  <input type="text" class="form-control" formControlName="unitPrice" placeholder="0.00"
+                         [readOnly]="true" currencyMask id="unitPrice" >
+                </td>
+
+
+                <td>
+                  <input type="text" class="form-control" formControlName="lineAmount" placeholder="0.00"
+                         [readOnly]="true" currencyMask id="lineAmount">
+                </td>
+
+
+              </tr>
+            </ng-container>
+            </tbody>
+
+
+          </table>
+
+        </c-tab-pane>
+
+
+      </c-tab-content>
+
+      <div class="row">
+        <div class="t-a-r offset-4 col-4">
+          Total:
+        </div>
+        <div class="t-a-r col-4">
+          <input type="text" class="form-control" formControlName="total" [readOnly]="true"
+                 placeholder="0.00" id="total" currencyMask>
+
+        </div>
+      </div>
+
+    </form>
+    <br>
+    <app-drop-zone (selectedFiles)="files = $event"></app-drop-zone><br>
+
+    <div class="col-12 footer-button-style pb-2">
+      <app-form-button [isEdit]="isEdit" [formGroup]="porCreateForm" (submit)="submitForm()"
+                       (update)="updatePor()"></app-form-button>
+    </div>
+  </div>
+</div>

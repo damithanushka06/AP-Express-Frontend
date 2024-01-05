@@ -1,0 +1,22 @@
+/* form-component.component.scss */
+
+.col-12.row {
+  position: relative; /* Add relative positioning to the row container */
+
+  .action-button {
+    position: relative; /* Position the buttons absolutely within the row */
+    top: 74%; /* Vertically center the buttons */
+    transform: translateY(-50%); /* Adjust the vertical alignment */
+    cursor: pointer;
+    opacity: 1; /* Hide the buttons by default */
+    transition: opacity 0.3s ease-in-out; /* Add a transition effect */
+    border-radius: 15px;
+    font-size: 16px;
+    padding: 2px;
+  }
+
+  &:hover .action-button {
+    border: 0px solid blue; /* Change border color on hover */
+    box-shadow: 0 0 5px rgba(0, 0, 255, 0.5); /* Add a subtle box shadow on hover */
+  }
+}

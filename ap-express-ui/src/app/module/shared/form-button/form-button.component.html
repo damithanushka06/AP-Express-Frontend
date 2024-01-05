@@ -1,0 +1,17 @@
+<form class="row g-3 needs-validation" [formGroup]="formGroup">
+    <div class="pull-right">
+      <button type="button" class="btn btn-ghost-info" *ngIf="!isEdit"
+              (click)="goToList.emit()">Go To List</button>&nbsp;
+
+      <button class="btn btn-outline-dark" type="button" (click)="reset.emit()">Reset</button>&nbsp;
+
+      <button class="btn btn-primary" type="button"  *ngIf="!isEdit"
+              (click)="submit.emit()">Submit
+      </button>
+
+      <button class="btn btn-primary" type="button" *ngIf="isEdit"
+              (click)="update.emit()">Update
+      </button>
+
+    </div>
+</form>

@@ -1,0 +1,281 @@
+.customer-badge {
+  border-radius: 2px;
+  padding: .25em .5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 12px;
+  text-align: center;
+  display: inline-block;
+  width: 100px;
+  letter-spacing: .3px;
+
+  &.status-APPROVED {
+    background: #C8E6C9;
+    color: #256029;
+  }
+
+  &.status-ACTIVE {
+    background: #C8E6C9;
+    color: #256029;
+  }
+
+  &.status-OPEN {
+    background: #C8E6C9;
+    color: #256029;
+    min-width: 106px;
+  }
+
+
+  &.status-REJECTED {
+    background: #FFCDD2;
+    color: #C63737;
+  }
+
+  &.status-CLOSED {
+    min-width: 106px;
+    background: #FFCDD2;
+    color: #C63737;
+  }
+
+  &.status-INACTIVE {
+    background: #FFCDD2;
+    color: #C63737;
+  }
+
+  &.status-VOID {
+    background: #FFCDD2;
+    color: #C63737;
+  }
+
+  &.status-DELETED {
+    background: #FFCDD2;
+    color: #C63737;
+  }
+
+  &.status-PENDING {
+    background: #FEEDAF;
+    color: #8A5340;
+  }
+
+  &.status-CANCELED {
+    background: #FEEDAF;
+    color: #8A5340;
+  }
+
+  &.status-PAID {
+    background: #B3E5FC;
+    color: #23547B;
+  }
+
+  &.status-PROCESSING {
+    background: #FFD8B2;
+    color: #805B36;
+  }
+
+  &.status-LOCKED {
+    background: #ECCFFF;
+    color: #694382;
+  }
+
+  &.status-MAILED {
+    background: #FFD8B2;
+    color: #805B36;
+  }
+
+  &.status-EXPORTED {
+    background: #FFD8B2;
+    color: #805B36;
+  }
+
+  &.status-NOT-ASSIGNED {
+    background: #ECEEEF;
+    color: #73828A;
+  }
+
+  &.status-NOT-EXPORTED {
+    background: #ECEEEF;
+    color: #73828A;
+  }
+
+  &.status-REQUIRED {
+    background: #FFCDD2;
+    color: #C63737;
+  }
+
+  &.status-OPTIONAL {
+    background: #C8E6C9;
+    color: #256029;
+  }
+
+  &.status-TAXABLE {
+    background: #FFD8B2;
+    color: #805B36;
+  }
+
+  &.status-UNDER-DISCUSSION {
+    background: #FFD8B2;
+    color: #805B36;
+    width: 150px;
+  }
+
+  &.status-NONTAXABLE {
+    background: #C8E6C9;
+    color: #256029;
+  }
+
+  &.status-NOT-PAID {
+    background: #FFCDD2;
+    color: #C63737;
+    min-width: 106px;
+  }
+
+  &.status-PAID {
+    background: #C8E6C9;
+    color: #256029;
+
+  }
+
+  &.status-PROCESSING {
+    background: #FEEDAF;
+    color: #8A5340;
+  }
+
+  &.status-EXPORTED {
+    background: #C8E6C9;
+    color: #256029;
+  }
+
+  &.status-NOT-EXPORTED {
+    background: #FFCDD2;
+    color: #C63737;
+  }
+
+  &.status-DRAFT {
+    background: #FEEDAF;
+    color: #8A5340;
+  }
+
+  &.status-SENT {
+    background: #C8E6C9;
+    color: #256029;
+  }
+
+  &.status-NOT-SENT {
+    background: #FFCDD2;
+    color: #C63737;
+  }
+
+  &.status-PARTIALLY-PAID {
+    background: #FEEDAF;
+    color: #8A5340;
+    min-width: 106px;
+  }
+
+  &.status-NO {
+    background: #FFCDD2;
+    color: #C63737;
+    min-width: 106px;
+  }
+
+  &.status-YES {
+    background: #C8E6C9;
+    color: #256029;
+    min-width: 106px;
+  }
+
+  &.status-COMPLETED {
+    background: #C8E6C9;
+    color: #256029;
+    min-width: 106px;
+  }
+
+  &.status-UNPAID {
+    background: #FFCDD2;
+    color: #C63737;
+    min-width: 106px;
+  }
+
+  &.status-FAILED {
+    background: #FFCDD2;
+    color: #C63737;
+    min-width: 106px;
+  }
+
+  &.status-CANCELED {
+    background: #ECEEEF;
+    color: #73828A;
+    min-width: 106px;
+  }
+
+  &.status-SUCCESS {
+    background: #C8E6C9;
+    color: #256029;
+    min-width: 106px;
+  }
+
+  &.status-PENDING {
+    background: #FEEDAF;
+    color: #8A5340;
+    min-width: 106px;
+  }
+
+  &.status-SUCCESS {
+    background: #C8E6C9;
+    color: #256029;
+    min-width: 106px;
+  }
+
+  &.status-FAILED {
+    background: #FFCDD2;
+    color: #C63737;
+    min-width: 106px;
+  }
+
+  &.status-PENDING {
+    background: #FEEDAF;
+    color: #8A5340;
+    min-width: 106px;
+  }
+
+  &.status-PUBLISHED {
+    background: #FEEDAF;
+    color: #8A5340;
+    min-width: 106px;
+  }
+
+  &.status-SUCCESS {
+    background: #C8E6C9;
+    color: #256029;
+    min-width: 106px;
+  }
+
+  &.status-FAILED {
+    background: #FFCDD2;
+    color: #C63737;
+    min-width: 106px;
+  }
+
+  &.status-PROCESSING {
+    background: #FEEDAF;
+    color: #8A5340;
+    min-width: 106px;
+  }
+
+  &.status-PROCESSED {
+    background: #C8E6C9;
+    color: #256029;
+    min-width: 106px;
+  }
+
+  &.status-UNPROCESSED {
+    background: #FEEDAF;
+    color: #8A5340;
+    width: 106px;
+  }
+
+  &.status-SUBMITTED {
+    background: #FEEDAF;
+    color: #8A5340;
+    width: 106px;
+  }
+}

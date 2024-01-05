@@ -1,0 +1,62 @@
+[
+  {
+    "field": "action",
+    "type": "text",
+    "header": "Action",
+    "columnWidth": "10"
+  },
+  {
+    "field": "poNo",
+    "type": "text",
+    "header": "PO No",
+    "columnWidth": "15"
+  },
+  {
+    "field": "vendorName",
+    "type": "text",
+    "header": "Vendor",
+    "columnWidth": "15"
+  },
+  {
+    "field": "total",
+    "type": "text",
+    "header": "Total",
+    "columnWidth": "15",
+    "align": "right"
+  },
+  {
+    "field": "orderDate",
+    "type": "date",
+    "header": "Order Date",
+    "columnWidth": "15",
+    "align": "center"
+  },
+  {
+    "field": "deliveryDate",
+    "type": "date",
+    "header": "Delivery Date",
+    "columnWidth": "15",
+    "align": "center"
+  },
+  {
+    "field": "status",
+    "type": "text",
+    "header": "Status",
+    "columnWidth": "15",
+    "align": "center"
+  },
+  {
+    "field": "createdBy",
+    "type": "text",
+    "header": "Created By",
+    "columnWidth": "15",
+    "align": "center"
+  },
+  {
+    "field": "createdDate",
+    "type": "date",
+    "header": "Created Date",
+    "columnWidth": "15",
+    "align": "center"
+  }
+]

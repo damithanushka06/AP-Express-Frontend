@@ -1,0 +1,33 @@
+<form [formGroup]="formGroup">
+<div class="col-12 row mt-5" formArrayName="workflowDetails">
+  <ng-container *ngFor="let level of workFlowInformation.controls; let i = index">
+    <div [formGroupName]="i" class="col-12 row mb-1">
+    <div class="col-4">
+      <label for="approvalUserId" class="form-label">Approval User</label>
+      <ng-select class="custom" [items]="approvalUserList.data"
+                 bindLabel="name" (change)="level?.get('approvalGroupId')?.reset()"
+                 bindValue="id" id="approvalUserId"
+                 formControlName="userId">
+      </ng-select>
+    </div>
+
+    <div class="col-4">
+      <label for="approvalGroupId" class="form-label">Approval Group</label>
+      <ng-select class="custom" [items]="approvalGroupList.data"
+                 bindLabel="name" (change)="level?.get('approvalUserId')?.reset()"
+                 bindValue="id" id="approvalGroupId"
+                 formControlName="groupId">
+      </ng-select>
+    </div>
+
+      <div class="col-4">
+    <i class="action-button fa fa-trash" *ngIf="workFlowInformation.controls.length > 1"
+       (click)="removeApprovalLevel(i)"></i>&nbsp;
+    <i class="action-button fa fa-plus" *ngIf="(i == workFlowInformation.controls.length -1)"
+       (click)="addApprovalLevel()"></i>
+      </div>
+
+    </div>
+  </ng-container>
+</div>
+</form>

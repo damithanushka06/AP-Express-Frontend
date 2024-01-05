@@ -1,0 +1,5 @@
+<form [formGroup]="formGroup">
+<input type="date" [class]="getInputClasses()" class="form-control" [formControlName]="formControlFromParent"
+       [id]="name" (change)="onDateChange($event)">
+
+</form>

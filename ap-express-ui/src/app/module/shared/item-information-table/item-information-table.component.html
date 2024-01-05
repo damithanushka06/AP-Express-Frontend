@@ -1,0 +1,63 @@
+<form [formGroup]="formGroup">
+<table [striped]="true" bordered cTable class="custom-table">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">item number</th>
+    <th scope="col">Item Name</th>
+    <th scope="col">QTY</th>
+    <th scope="col">Unit Price</th>
+    <th scope="col">Line Total</th>
+    <th class="t-a-c" scope="col">Action</th>
+  </tr>
+  </thead>
+
+  <tbody [formArrayName]="isFromBill? 'billItemInformation' : 'poItemInformation'">
+
+  <ng-container *ngFor="let item of itemInformation.controls; let i = index">
+    <tr [formGroupName]="i">
+
+      <td>{{i + 1}}</td>
+
+      <td>
+        <ng-select class="custom" [items]="dropDownUtility.itemList.data"
+                   bindLabel="name" (change)="getItemNameById($event.id, item)"
+                   bindValue="id" id="itemNo" appendTo="body"
+                   formControlName="itemNo">
+        </ng-select>
+      </td>
+
+      <td>
+        <input [readOnly]="true" type="text" class="form-control" formControlName="itemName" id="itemName">
+      </td>
+
+      <td class="t-a-r">
+        <input numberOnly type="text" class="form-control" formControlName="qty" id="qty"
+               (keyup)="calculationUtility.calculateItemInformationTotal(itemInformation, i, formGroup)">
+      </td>
+
+      <td>
+        <input type="text" class="form-control" formControlName="unitPrice" placeholder="0.00"
+               currencyMask id="unitPrice"
+               (keyup)="calculationUtility.calculateItemInformationTotal(itemInformation, i, formGroup)">
+      </td>
+
+      <td>
+        <input type="text" class="form-control" formControlName="lineTotal" [readOnly]="true"
+               placeholder="0.00" id="lineTotal" currencyMask>
+      </td>
+
+      <td class="t-a-c">
+        <i class="detail-table-action fa fa-trash" *ngIf="itemInformation.controls.length > 1"
+           (click)="removeItem(i)"></i>&nbsp;
+        <i class="detail-table-action fa fa-plus" (click)="addItemControls()"
+           *ngIf="(i == itemInformation.controls.length -1)"></i>
+      </td>
+
+    </tr>
+  </ng-container>
+  </tbody>
+
+
+</table>
+</form>

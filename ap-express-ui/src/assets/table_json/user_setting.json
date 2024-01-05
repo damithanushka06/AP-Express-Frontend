@@ -1,0 +1,45 @@
+[
+  {
+    "field": "action",
+    "type": "text",
+    "header": "Action",
+    "columnWidth": "10"
+  },
+  {
+    "field": "username",
+    "type": "text",
+    "header": "User Name",
+    "columnWidth": "20"
+  },
+  {
+    "field": "email",
+    "type": "text",
+    "header": "Email",
+    "columnWidth": "20"
+  },
+  {
+    "field": "roleName",
+    "type": "text",
+    "header": "Role",
+    "columnWidth": "20"
+  },
+  {
+    "field": "approvalGroupName",
+    "type": "text",
+    "header": "Approval Group",
+    "columnWidth": "20"
+  },
+  {
+    "field": "createdBy",
+    "type": "text",
+    "header": "Created By",
+    "columnWidth": "20"
+  },
+  {
+    "field": "createdDate",
+    "type": "date",
+    "header": "Created Date",
+    "columnWidth": "20",
+    "align": "center"
+  }
+]

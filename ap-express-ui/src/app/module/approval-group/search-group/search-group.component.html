@@ -1,0 +1,18 @@
+<app-table [setting]="groupSetting" [data]="approvalGroupList" (id)="groupId = $event"
+           (delete)="deleteApprovalGroup(groupId)" (edit)="showModal();isEditGroup =true"
+></app-table>
+
+
+<!-- This is a approval group update modal -->
+<c-modal  #staticBackdropModal backdrop="static" id="groupList" size="lg">
+  <c-modal-header>
+    <h5 cModalTitle>Update Approval Group</h5>
+    <button [cModalToggle]="staticBackdropModal.id" cButtonClose (click)="hideModal()"></button>
+  </c-modal-header>
+  <c-modal-body>
+    <app-create-group [isEditGroup]="isEditGroup" [approvalGroupId]="groupId"
+                      (success)="searchApprovalGroup(); hideModal(); isEditGroup = false"
+                      *ngIf="isEditGroup"></app-create-group>
+  </c-modal-body>
+</c-modal>
+

@@ -1,0 +1,55 @@
+<div class="card">
+  <p-table [columns]="setting" #dt [value]="data" [tableStyle]="{'min-width': '50rem'}"
+           [rows]="10" [showCurrentPageReport]="true" [loading]="loading" [resizableColumns]="true"
+           [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+           [globalFilterFields]="['name','parentAccountName','accountTypeName','createdBy', 'createdDate']"
+           [exportHeader]="'customExportHeader'" [scrollable]="true" scrollHeight="600px"
+           styleClass="p-datatable-gridlines custom-table"
+           selectionMode="multiple" [(selection)]="selectedProducts" dataKey="id" sortMode="multiple">
+
+    <ng-template pTemplate="caption">
+      <div class="flex">
+        <button type="button" pButton pRipple icon="pi pi-file" (click)="dt.exportCSV()" class="mr-2" pTooltip="CSV"
+                tooltipPosition="bottom"></button>&nbsp;
+        <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()"
+                class="p-button-success mr-2" pTooltip="XLS" tooltipPosition="bottom"></button>&nbsp;
+        <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()" class="p-button-warning mr-2"
+                pTooltip="PDF" tooltipPosition="bottom"></button>&nbsp;
+        <button type="button" pButton pRipple icon="pi pi-filter" (click)="dt.exportCSV({selectionOnly:true})"
+                class="p-button-info ml-auto" pTooltip="Selection Only" tooltipPosition="bottom"></button>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th *ngFor="let col of columns"  [ngStyle]="{'text-align': 'center'}"
+            [style]="'min-width:' + col.columnWidth  + 'px'"
+            pSortableColumn="{{col.field}}" pResizableColumn pReorderableColumn>
+          {{col.header}}
+          <p-sortIcon *ngIf="col.field != 'action'" field="{{col.field}}"></p-sortIcon>
+        </th>
+      </tr>
+
+      <tr>
+        <th *ngFor="let col of columns">
+          <p-columnFilter type="text" *ngIf="col.field != 'action'" field="{{col.field}}"></p-columnFilter>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns" let-rowIndex="rowIndex">
+      <tr style="height:46px" [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex">
+        <td *ngFor="let col of columns" [ngStyle]="{'text-align': col.align}"
+            [style]="'width:' + col.columnWidth  + 'px'">
+          <span *ngIf="col.field != 'action' && col.field !== 'status'"> {{rowData[col.field]}} </span>
+          <span *ngIf="col.field == 'action'">  <p-splitButton label="Actions" [model]="actionButtonList(rowData)"
+                                                               appendTo="body" (click)="clickOnActionButton(rowData)"
+                                                               styleClass=" mr-2 mb-2"></p-splitButton> </span>
+          <span *ngIf="col.field == 'status'"
+                [class]="'customer-badge status-' + getStatus(rowData[col.field])">{{getStatus(rowData[col.field])}}</span>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+</div>
+
+

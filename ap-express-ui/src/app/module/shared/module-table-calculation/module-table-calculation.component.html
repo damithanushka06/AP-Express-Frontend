@@ -1,0 +1,43 @@
+<form [formGroup]="formGroup">
+  <div class="row  mb-2">
+    <div class="t-a-r offset-4 col-4">
+      Item Line Total:
+    </div>
+    <div class="t-a-r col-4">
+      <input type="text" class="form-control" formControlName="itemTotal" [readOnly]="true"
+             placeholder="0.00" id="itemTotal" currencyMask>
+
+    </div>
+  </div>
+  <div class="row mb-2">
+    <div class="t-a-r offset-4 col-4">
+      Account Line Total:
+    </div>
+    <div class="t-a-r col-4">
+      <input type="text" class="form-control" formControlName="accountTotal" [readOnly]="true"
+             placeholder="0.00" id="accountTotal" currencyMask>
+
+    </div>
+  </div>
+  <div class="row mb-2" *ngIf="isShowTax">
+    <div class="t-a-r offset-4 col-4">
+      Tax Amount:
+    </div>
+    <div class="t-a-r col-4">
+      <input type="text" class="form-control" formControlName="taxAmount"
+             (keyup)="calculationUtility.calculateFullyTotalAmount(formGroup)"
+             placeholder="0.00" id="taxAmount" currencyMask>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="t-a-r offset-4 col-4">
+      Total:
+    </div>
+    <div class="t-a-r col-4">
+      <input type="text" class="form-control" formControlName="total" [readOnly]="true"
+             placeholder="0.00" id="total" currencyMask>
+
+    </div>
+  </div>
+</form>

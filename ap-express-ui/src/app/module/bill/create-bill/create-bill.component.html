@@ -1,0 +1,121 @@
+<div class="card">
+  <div class="card-body">
+    <form class="row g-3 needs-validation" [formGroup]="billCreateForm">
+
+      <div class="col-md-4">
+        <label for="billNo" class="form-label">Bill Number*</label>
+        <input type="text" class="form-control" formControlName="billNo" id="billNo">
+        <div *ngIf="(!f['billNo'].valid && f['billNo'].dirty)" class="invalid">Bill Number is required.</div>
+      </div>
+
+      <div class="col-md-4">
+        <label for="vendorId" class="form-label">Vendor*</label>
+        <ng-select class="custom" [items]="dropDownUtility.vendorList.data"
+                   bindLabel="name" (change)="dropDownUtility.getVendorRelatedPoList(f['vendorId'].value)"
+                   bindValue="id" id="vendorId"
+                   formControlName="vendorId">
+        </ng-select>
+        <div class="invalid" *ngIf="(!f['vendorId'].valid && f['vendorId'].dirty)">Vendor is required.</div>
+      </div>
+
+      <div class="col-md-4">
+        <label for="vendorId" class="form-label">PO Number*</label>
+        <ng-select class="custom" [items]="dropDownUtility.vendorRelatedPOList.data"
+                   bindLabel="name"
+                   bindValue="id" id="poId"
+                   formControlName="poId">
+        </ng-select>
+        <div class="invalid" *ngIf="(!f['vendorId'].valid && f['vendorId'].dirty)">Vendor is required.</div>
+      </div>
+
+        <div class="col-4 p-fluid">
+          <label for="billDate">Bill Date*</label>
+          <div class="full-width">
+            <p-calendar id="billDate" dateFormat="mm-dd-yy" [showIcon]="true" [showButtonBar]="true"
+                        class="pCalender"
+                        formControlName="billDate" inputId="billDate"></p-calendar>
+            <div class="invalid" *ngIf="!f['billDate'].valid && (f['billDate'].dirty || f['billDate'].touched)">
+              Bill Date is required.
+            </div>
+          </div>
+        </div>
+
+      <div class="col-md-4">
+        <label for="vendorId" class="form-label">Term</label>
+        <ng-select class="custom" [items]="dropDownUtility.termList.data"
+                   bindLabel="name"
+                   bindValue="id" id="termId"
+                   formControlName="termId">
+        </ng-select>
+        <div class="invalid" *ngIf="(!f['termId'].valid && f['termId'].dirty)">Term is required.</div>
+      </div>
+
+      <div class="col-4 p-fluid">
+        <label for="dueDate">Due Date</label>
+        <div class="full-width">
+          <p-calendar id="dueDate" dateFormat="mm-dd-yy" [showIcon]="true" [showButtonBar]="true"
+                      class="pCalender"
+                      formControlName="dueDate" inputId="dueDate"></p-calendar>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <label for="notes" class="form-label">Notes</label>
+        <textarea type="text" class="form-control" formControlName="notes" rows="1" id="notes"></textarea>
+      </div>
+
+
+      <c-nav variant="pills" class="mt-5">
+        <c-nav-item>
+          <a [active]="true" [cTabContent]="tabContent" [tabPaneIdx]="0" cNavLink>
+            Item Information
+          </a>
+        </c-nav-item>
+        <c-nav-item>
+          <a [cTabContent]="tabContent" [tabPaneIdx]="1" cNavLink>
+            Account Information
+          </a>
+        </c-nav-item>
+      </c-nav>
+
+      <c-tab-content #tabContent="cTabContent" [activeTabPaneIdx]="1">
+        <c-tab-pane class="p-3">
+
+          <app-item-information-table *ngIf="isEdit ? itemLength : true" [isFromBill]="true"
+                                      [isEdit]="isEdit"
+                                      (initializedItem)="billCreateForm.get('billItemInformation')?.patchValue(billItemInformation)"
+                                      [formGroup]="billCreateForm" [itemLength]="itemLength">
+          </app-item-information-table>
+
+        </c-tab-pane>
+
+        <c-tab-pane class="p-3">
+          <app-account-information-table *ngIf="isEdit ? accountLength : true"
+                                         [isEdit]="isEdit"
+                                         (initializedAccount)="billCreateForm.get('billAccountInformation')?.
+                                         patchValue(billAccountInformation)" [isFromBill]="true"
+                                         [formGroup]="billCreateForm" [accountLength]="accountLength">
+          </app-account-information-table>
+        </c-tab-pane>
+
+        <app-module-table-calculation [isShowTax]="true" [formGroup]="billCreateForm">
+        </app-module-table-calculation>
+
+      </c-tab-content>
+
+      <app-drop-zone (selectedFiles)="files = $event"></app-drop-zone>
+
+      <app-common-work-flow [formGroup]="billCreateForm" *ngIf="billCreateForm"
+                            [approvalUserList]="dropDownUtility.userList"
+                            [approvalGroupList]="dropDownUtility.approvalGroupList">
+      </app-common-work-flow>
+
+      <div class="col-12 footer-button-style pb-2">
+        <app-form-button [isEdit]="isEdit" [formGroup]="billCreateForm" (submit)="submitForm()"
+                         (goToList)="router.navigateByUrl('/home/bill/bill-list')"
+                         (update)="updatePo()"></app-form-button>
+      </div>
+    </form>
+
+  </div>
+</div>

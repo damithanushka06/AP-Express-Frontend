@@ -1,0 +1,76 @@
+<div class="card">
+  <div class="card-body">
+
+    <form class="row g-3 needs-validation" [formGroup]="createItemForm">
+
+      <div class="col-md-4">
+        <label for="name" class="form-label">Item Number*</label>
+        <input type="text" class="form-control" formControlName="number" id="itemNo">
+        <div *ngIf="(!f['number'].valid && f['number'].dirty)" class="invalid">Item Number is required.</div>
+      </div>
+
+      <div class="col-md-4">
+        <label for="name" class="form-label">Name*</label>
+        <input type="text" class="form-control" formControlName="name" id="name">
+        <div *ngIf="(!f['name'].valid && f['name'].dirty)" class="invalid">Name is required.</div>
+      </div>
+
+      <div class="col-md-4">
+        <label for="catId" class="form-label">Select Category*</label>
+        <ng-select class="custom" [items]="categoryList.data"
+                   bindLabel="name"
+                   bindValue="id" id="catId"
+                   formControlName="categoryId">
+        </ng-select>
+        <div class="invalid" *ngIf="(!f['categoryId'].valid && f['categoryId'].dirty)">Category is required.</div>
+      </div>
+
+      <div class="col-md-4">
+        <label for="catId" class="form-label">Select UOM*</label>
+        <ng-select class="uomId" [items]="uomList.data"
+                   bindLabel="name"
+                   bindValue="id" id="uomId"
+                   formControlName="uomId">
+        </ng-select>
+        <div class="invalid" *ngIf="(!f['uomId'].valid && f['uomId'].dirty)">UOM is required.</div>
+      </div>
+
+      <div class="col-md-4">
+        <label for="name" class="form-label">Unit Price*</label>
+        <input type="text" class="form-control" formControlName="unitPrice" id="unitPrice">
+        <div *ngIf="(!f['unitPrice'].valid && f['unitPrice'].dirty)" class="invalid">Unit Price is required.</div>
+      </div>
+
+      <div class="col-md-8">
+        <label for="description" class="form-label">Description</label>
+        <textarea type="text" class="form-control" formControlName="description" rows="1"
+                  id="description"></textarea>
+      </div>
+
+      <div class="col-12">
+
+        <div class="pull-right">
+
+          <button type="button" class="btn btn-ghost-info" *ngIf="!isEdit"
+                  (click)="router.navigateByUrl('/home/item/item-list')">Go To List</button>&nbsp;
+
+          <button class="btn btn-outline-dark" type="button"
+                  (click)="resetItemForm()">Reset
+          </button>&nbsp;
+
+          <button class="btn btn-primary " type="submit" [disabled]="createItemForm.invalid"
+                  *ngIf="!isEdit"
+                  (click)="submitItemData()">Submit form
+          </button>
+
+          <button class="btn btn-primary " type="submit" [disabled]="createItemForm.invalid"
+                  *ngIf="isEdit"
+                  (click)="updateItemData()">Update
+          </button>
+        </div>
+
+      </div>
+    </form>
+
+  </div>
+</div>

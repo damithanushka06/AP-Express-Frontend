@@ -1,0 +1,83 @@
+<div class="card">
+  <div class="card-body">
+
+    <form class="row g-3 needs-validation" [formGroup]="createVendorForm">
+
+      <div class="col-md-4">
+        <label for="name" class="form-label">Name*</label>
+        <input type="text" class="form-control" formControlName="name" id="name">
+        <div *ngIf="(!f['name'].valid && f['name'].dirty)" class="invalid">Name is required.</div>
+      </div>
+
+      <div class="col-md-4">
+        <label for="email" class="form-label">Email*</label>
+        <input type="text" class="form-control" formControlName="email" id="email">
+        <div *ngIf="(f['email'].hasError('required') && f['email'].dirty)" class="invalid">Email is required.</div>
+        <div *ngIf="f['email'].hasError('email')" class="invalid">Please enter a valid email address.</div>
+      </div>
+
+      <div class="col-md-4">
+        <label for="password" class="form-label">Contact No</label>
+        <input type="text" class="form-control" formControlName="contactNo" id="password">
+      </div>
+
+
+      <div class="col-md-4">
+        <label for="paymentTermId" class="form-label">Payment Term*</label>
+        <ng-select class="custom" [items]="paymentTermList.data"
+                   bindLabel="name"
+                   bindValue="id" id="paymentTermId"
+                   formControlName="paymentTermId">
+        </ng-select>
+        <div class="invalid" *ngIf="(!f['paymentTermId'].valid && f['paymentTermId'].dirty)">Payment Term is required.</div>
+      </div>
+
+      <div class="col-md-4">
+        <label for="paymentMethodId" class="form-label">Payment Method*</label>
+        <ng-select class="custom" [items]="paymentMethodList.data"
+                   bindLabel="name"
+                   bindValue="id" id="paymentMethodId"
+                   formControlName="paymentMethodId">
+        </ng-select>
+        <div class="invalid" *ngIf="(!f['paymentMethodId'].valid && f['paymentMethodId'].dirty)">Payment Method is
+          required.
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <label for="email" class="form-label">Address</label>
+        <textarea type="text" class="form-control" formControlName="address" id="address"></textarea>
+      </div>
+
+      <div class="col-md-6">
+        <label for="email" class="form-label">Notes</label>
+        <textarea type="text" class="form-control" formControlName="notes" id="notes"></textarea>
+      </div>
+
+      <div class="col-12">
+
+        <div class="pull-right">
+
+          <button type="button" class="btn btn-ghost-info"
+                  (click)="router.navigateByUrl('/home/vendor/vendor-list')">Go To List</button>&nbsp;
+
+          <button class="btn btn-outline-dark" type="button"
+                  (click)="resetVendorForm()">Reset
+          </button>&nbsp;
+
+          <button class="btn btn-primary " type="submit" [disabled]="createVendorForm.invalid"
+                  *ngIf="!isEdit"
+                  (click)="submitVendorData()">Submit form
+          </button>
+
+          <button class="btn btn-primary " type="submit" [disabled]="createVendorForm.invalid"
+                  *ngIf="isEdit"
+                  (click)="updateVendorData()">Update
+          </button>
+        </div>
+
+      </div>
+    </form>
+
+  </div>
+</div>

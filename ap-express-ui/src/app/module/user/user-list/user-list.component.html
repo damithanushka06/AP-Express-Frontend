@@ -1,0 +1,17 @@
+<app-table [setting]="userSetting" [data]="userList" (id)="userId = $event.id"
+           (delete)="deleteUser(userId)" (edit)="showModal()" [items]="items"
+></app-table>
+
+
+<!-- This is a user update modal -->
+  <c-modal  #staticBackdropModal backdrop="static" id="userList" size="xl" >
+    <c-modal-header>
+      <h5 cModalTitle>Update User</h5>
+      <button [cModalToggle]="staticBackdropModal.id" cButtonClose (click)="hideModal()"></button>
+    </c-modal-header>
+    <c-modal-body>
+      <app-create-user (success)="hideModal(); getAllUserList()" [userid]="userId"
+                       [isEdit]="isEditUser" *ngIf="isEditUser"></app-create-user>
+    </c-modal-body>
+  </c-modal>
+

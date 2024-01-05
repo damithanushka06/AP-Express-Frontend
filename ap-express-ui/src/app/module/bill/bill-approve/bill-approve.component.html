@@ -1,0 +1,153 @@
+<div class="card">
+  <div class="card-body">
+
+    <div class="col-12 row detail-row">
+      <div class="col-3">
+        <label for="billNo" class="form-label row-label">Bill Number</label>
+        <span id="billNo" class="row-value">{{billMst.billNo}}</span>
+      </div>
+
+      <div class="col-3">
+        <label for="vendorName" class="form-label row-label">Vendor</label>
+        <span id="vendorName" class="row-value">{{billMst.vendorName}}</span>
+      </div>
+
+      <div class="col-3" *ngIf="billMst.poNumber">
+        <label for="poNumber" class="form-label row-label">PO Number</label>
+        <span id="poNumber" class="row-value">{{billMst.poNumber}}</span>
+      </div>
+
+      <div class="col-3">
+        <label for="billDate" class="row-label">Bill Date</label>
+        <span id="billDate" class="row-value">{{billMst.billDate}}</span>
+      </div>
+
+      <div class="col-3">
+        <label for="term" class="form-label row-label">Term</label>
+        <span formControlName="term" id="term" class="row-value">{{billMst.termName}}</span>
+      </div>
+
+      <div class="col-3">
+        <label for="dueDate" class="row-label">Due Date</label>
+        <span id="dueDate" class="row-value">{{billMst.dueDate}}</span>
+      </div>
+
+      <div class="col-6" *ngIf="billMst.notes">
+        <label for="notes" class="form-label row-label">Notes</label>
+        <span id="notes" class="row-value">{{billMst.notes}}</span>
+      </div>
+    </div>
+
+    <p-tabView>
+      <p-tabPanel header="Item Information" *ngIf="billMst.billItemInformation.length != 0">
+        <p-table [value]="billMst.billItemInformation" styleClass="p-datatable-gridlines"
+                 [tableStyle]="{'min-width': '50rem'}">
+          <ng-template pTemplate="header">
+            <tr>
+              <th class="t-a-c">#</th>
+              <th class="t-a-c">item number</th>
+              <th class="t-a-c">Item Name</th>
+              <th class="t-a-c">QTY</th>
+              <th class="t-a-c">Unit Price</th>
+              <th class="t-a-c">Line Total</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-item let-rowIndex="rowIndex">
+            <tr>
+
+              <td>{{rowIndex + 1}}</td>
+              <td>{{item.itemNumber}}</td>
+              <td>{{item.itemName}}</td>
+              <td class="t-a-c">{{item.qty}}</td>
+              <td class="t-a-r">{{item.unitPrice}}</td>
+              <td class="t-a-r">{{item.lineTotal}}</td>
+
+
+            </tr>
+          </ng-template>
+        </p-table>
+      </p-tabPanel>
+      <p-tabPanel header="Account Information" *ngIf="billMst.billAccountInformation.length != 0">
+        <p-table [value]="billMst.billAccountInformation" styleClass="p-datatable-gridlines"
+                 [tableStyle]="{'min-width': '50rem'}">
+          <ng-template pTemplate="header">
+            <tr>
+              <th class="t-a-c">#</th>
+              <th class="t-a-c">Account Number</th>
+              <th class="t-a-c">Account Name</th>
+              <th class="t-a-c">Account Description</th>
+              <th class="t-a-c">Line Amount</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-account let-rowIndex="rowIndex">
+            <tr>
+              <td>{{rowIndex + 1}}</td>
+              <td>{{account.accountNumber}}</td>
+              <td>{{account.accountName}}</td>
+              <td>{{account.description}}</td>
+              <td class="t-a-r">{{account.lineAmount}}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </p-tabPanel>
+    </p-tabView>
+
+    <div class="col-12 t-a-r row">
+
+      <div class="col-12">
+        <div class="row">
+          <div class="col-10">
+            <label for="itemTotal" class="form-label row-label">Item Total:</label>
+          </div>
+          <div class="col-2">
+            <span id="itemTotal" class="row-value fixed-width">{{billMst.itemTotal}}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="row">
+          <div class="col-10">
+            <label for="accountTotal" class="form-label row-label">Account Total:</label>
+          </div>
+          <div class="col-2">
+            <span id="accountTotal" class="row-value fixed-width">{{billMst.accountTotal}}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="row">
+          <div class="col-10">
+            <label for="taxAmount" class="form-label row-label">Tax Amount:</label>
+          </div>
+          <div class="col-2">
+            <span id="taxAmount" class="row-value fixed-width">{{billMst.taxAmount}}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="row">
+          <div class="col-10">
+            <label for="total" class="form-label row-label">Bill Total:</label>
+          </div>
+          <div class="col-2">
+            <span id="total" class="row-value fixed-width">{{billMst.billAmount}}</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-12 row detail-row">
+
+    <app-approve-buttons [isRejected]="isRejected" [numberOfWorkFlowLevel]="noOfWorkflowLevel"
+                         [currentLevel]="currentLevel">
+    </app-approve-buttons>
+
+    </div>
+
+
+  </div>
+</div>

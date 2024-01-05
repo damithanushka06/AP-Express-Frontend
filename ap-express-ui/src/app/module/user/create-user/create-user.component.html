@@ -1,0 +1,101 @@
+<div class="card">
+  <div class="card-body">
+
+    <div class="avatar" *ngIf="proPicUrl">
+      <img class="avatar-img" [src]="proPicUrl">
+    </div>
+
+    <form class="row g-3 needs-validation" [formGroup]="createUserForm">
+
+      <div class="col-md-4">
+        <label for="name" class="form-label">Name*</label>
+        <input type="text" class="form-control" formControlName="username" id="name">
+        <div *ngIf="(!f['username'].valid && f['username'].dirty)" class="invalid">Name is required.</div>
+      </div>
+
+      <div class="col-md-4">
+        <label for="email" class="form-label">Email*</label>
+        <input type="text" class="form-control" formControlName="email" id="email">
+        <div *ngIf="(f['email'].hasError('required') && f['email'].dirty)" class="invalid">Email is required.</div>
+        <div *ngIf="f['email'].hasError('email')" class="invalid">Please enter a valid email address.</div>
+      </div>
+
+      <div class="col-md-4" *ngIf="!isEdit">
+        <label for="password" class="form-label">Password*</label>
+        <input type="text" class="form-control" formControlName="password" id="password">
+        <div *ngIf="(!f['password'].valid && f['password'].dirty)" class="invalid">Password is required.</div>
+      </div>
+
+      <div class="col-md-4" *ngIf="!isEdit">
+        <label for="password" class="form-label">Confirmation Password*</label>
+        <input type="text" class="form-control" formControlName="cPassword" id="cPassword">
+        <div *ngIf="(f['cPassword'].hasError('required') && f['cPassword'].dirty)" class="invalid">Confirmation Password
+          is
+          required.
+        </div>
+        <div class="invalid" *ngIf="f['cPassword'].hasError('passwordMismatch')">Confirmation Passwords do not match
+          with Password.
+        </div>
+      </div>
+
+
+      <div class="col-md-4">
+        <label for="employeeNo" class="form-label">Employee No</label>
+        <input type="text" class="form-control" formControlName="employeeNo" id="employeeNo">
+      </div>
+
+      <div class="col-md-4">
+        <label for="roleId" class="form-label">Select Role*</label>
+        <ng-select class="custom" [items]="roleList.data"
+                   bindLabel="name"
+                   bindValue="id" id="roleId"
+                   formControlName="roleId">
+        </ng-select>
+        <div class="invalid" *ngIf="(!f['roleId'].valid && f['roleId'].dirty)">Role is required.</div>
+      </div>
+
+      <div class="col-md-4">
+        <label for="roleId" class="form-label">Select Approval Group*</label>
+        <ng-select class="custom" [items]="approvalGroupList.data"
+                   bindLabel="name"
+                   bindValue="id" id="approvalGroupId"
+                   formControlName="approvalGroupId">
+        </ng-select>
+        <div class="invalid" *ngIf="(!f['approvalGroupId'].valid && f['approvalGroupId'].dirty)">Approval Group is
+          required.
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <label for="roleId" class="form-label">Profile Picture</label>
+        <input class="form-control" formControlName="file" id="formFile" type="file" (change)="patchProPic($event)"/>
+      </div>
+
+      <div class="col-12">
+
+        <div class="pull-right">
+
+          <button type="button" class="btn btn-ghost-info"
+                  (click)="router.navigateByUrl('/home/user/user-list')">Go To List</button>&nbsp;
+
+
+          <button class="btn btn-outline-dark" type="button"
+                  (click)="resetUserForm()">Reset
+          </button>&nbsp;
+
+          <button class="btn btn-primary " type="submit" [disabled]="createUserForm.invalid"
+                  *ngIf="!isEdit"
+                  (click)="submitUserData()">Submit form
+          </button>
+
+          <button class="btn btn-primary " type="submit" [disabled]="createUserForm.invalid"
+                  *ngIf="isEdit"
+                  (click)="updateUserData()">Update
+          </button>
+        </div>
+
+      </div>
+    </form>
+
+  </div>
+</div>

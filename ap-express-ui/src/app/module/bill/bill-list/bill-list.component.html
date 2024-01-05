@@ -1,0 +1,27 @@
+<app-table [setting]="billSetting" [data]="billList" [items]="items" (id)="bill = $event; billId = $event.id"
+           (delete)="deleteItem(billId)" (edit)="showModal()" (approve)="showApproveModal()"
+></app-table>
+
+<!-- This is a bill update modal -->
+<c-modal  #staticBackdropModal backdrop="static" id="bill" size="xl" [fullscreen]="true">
+  <c-modal-header>
+    <h5 cModalTitle>Update Bill #{{bill?.billNo}}</h5>
+    <button [cModalToggle]="staticBackdropModal.id" cButtonClose (click)="hideModal()"></button>
+  </c-modal-header>
+  <c-modal-body>
+    <app-create-bill (success)="hideModal(); getAllBillList()" [billId]="billId"
+                   [isEdit]="isEditBill" *ngIf="isEditBill && billId"></app-create-bill>
+  </c-modal-body>
+</c-modal>
+
+
+<!-- This is a bill approve modal -->
+<c-modal  #staticBackdropModalBillApprove backdrop="static" id="approveBill" size="xl" [fullscreen]="true">
+  <c-modal-header>
+    <h5 cModalTitle>Approve Bill #{{bill?.billNo}}</h5>
+    <button [cModalToggle]="staticBackdropModalBillApprove.id" cButtonClose (click)="hideBillApproveModal()"></button>
+  </c-modal-header>
+  <c-modal-body>
+    <app-bill-approve [billId]="billId" *ngIf="isBillApprove"></app-bill-approve>
+  </c-modal-body>
+</c-modal>

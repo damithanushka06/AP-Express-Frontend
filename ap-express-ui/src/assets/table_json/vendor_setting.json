@@ -1,0 +1,51 @@
+[
+  {
+    "field": "action",
+    "type": "text",
+    "header": "Action",
+    "columnWidth": "10"
+  },
+  {
+    "field": "name",
+    "type": "text",
+    "header": "Name",
+    "columnWidth": "20"
+  },
+  {
+    "field": "email",
+    "type": "text",
+    "header": "Email",
+    "columnWidth": "20"
+  },
+  {
+    "field": "contactNo",
+    "type": "text",
+    "header": "Contact No",
+    "columnWidth": "20"
+  },
+  {
+    "field": "paymentTermName",
+    "type": "text",
+    "header": "Payment Term",
+    "columnWidth": "20"
+  },
+  {
+    "field": "paymentMethodName",
+    "type": "text",
+    "header": "Payment Method",
+    "columnWidth": "20"
+  },
+  {
+    "field": "createdBy",
+    "type": "text",
+    "header": "Created By",
+    "columnWidth": "20"
+  },
+  {
+    "field": "createdAt",
+    "type": "date",
+    "header": "Created Date",
+    "columnWidth": "20",
+    "align": "center"
+  }
+]
