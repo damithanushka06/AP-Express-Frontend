@@ -107,6 +107,9 @@ export class CreateUserComponent implements OnInit {
    * this method can be used to update user
    */
   getUserData() {
+    if(this.userid == undefined){
+      return;
+    }
     this.createUserForm.get('password')?.clearValidators();
     this.createUserForm.get('cPassword')?.clearValidators();
     this.createUserForm.get('password')?.updateValueAndValidity();

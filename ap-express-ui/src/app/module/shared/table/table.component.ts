@@ -73,7 +73,9 @@ export class TableComponent implements OnInit {
         icon: 'pi pi-pencil',
         id: 3,
         status: AppEnumConstants.STATUS_COMMON,
-        command: () => this.edit.emit()
+        command: () => {
+          this.edit.emit()
+        }
       },
       {
         label: 'Delete',

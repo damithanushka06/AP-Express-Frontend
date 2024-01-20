@@ -11,7 +11,7 @@
       <div class="col-md-4">
         <label for="vendorId" class="form-label">Vendor*</label>
         <ng-select class="custom" [items]="dropDownUtility.vendorList.data"
-                   bindLabel="name"
+                   bindLabel="name" appendTo="body"
                    bindValue="id" id="vendorId"
                    formControlName="vendorId">
         </ng-select>

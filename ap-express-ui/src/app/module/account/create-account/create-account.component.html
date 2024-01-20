@@ -18,7 +18,7 @@
       <div class="col-md-4">
         <label for="accountType" class="form-label">Account Type*</label>
         <ng-select class="custom" [items]="accountTypeList.data"
-                   bindLabel="name"
+                   bindLabel="name" appendTo="body"
                    bindValue="id" id="accountType"
                    formControlName="accountTypeId">
         </ng-select>
@@ -28,7 +28,7 @@
       <div class="col-md-4">
         <label for="parentAccountId" class="form-label">Parent Account</label>
         <ng-select class="custom" [items]="parentAccountList.data"
-                   bindLabel="name"
+                   bindLabel="name" appendTo="body"
                    bindValue="id" id="parentAccountId"
                    formControlName="parentAccountId">
         </ng-select>

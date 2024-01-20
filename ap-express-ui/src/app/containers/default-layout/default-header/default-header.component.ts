@@ -59,6 +59,9 @@ export class DefaultHeaderComponent  extends HeaderComponent implements OnInit {
    * this method can be used get user profile pic
    */
   getUserProPic(){
+    if(!this.storageService.getUser().id){
+      return;
+    }
     this.userService.getUser(this.storageService.getUser().id).subscribe((res: any) => {
       if (res.status === HttpResponseConstant.HTTP_RESPONSE_SUCCESS) {
         if(res.body.proPicBase64){
