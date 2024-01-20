@@ -18,7 +18,7 @@
       <div class="col-md-4">
         <label for="catId" class="form-label">Select Category*</label>
         <ng-select class="custom" [items]="categoryList.data"
-                   bindLabel="name"
+                   bindLabel="name" appendTo="body"
                    bindValue="id" id="catId"
                    formControlName="categoryId">
         </ng-select>
@@ -28,7 +28,7 @@
       <div class="col-md-4">
         <label for="catId" class="form-label">Select UOM*</label>
         <ng-select class="uomId" [items]="uomList.data"
-                   bindLabel="name"
+                   bindLabel="name" appendTo="body"
                    bindValue="id" id="uomId"
                    formControlName="uomId">
         </ng-select>

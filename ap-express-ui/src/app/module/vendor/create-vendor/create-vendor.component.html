@@ -25,7 +25,7 @@
       <div class="col-md-4">
         <label for="paymentTermId" class="form-label">Payment Term*</label>
         <ng-select class="custom" [items]="paymentTermList.data"
-                   bindLabel="name"
+                   bindLabel="name" appendTo="body"
                    bindValue="id" id="paymentTermId"
                    formControlName="paymentTermId">
         </ng-select>
@@ -35,7 +35,7 @@
       <div class="col-md-4">
         <label for="paymentMethodId" class="form-label">Payment Method*</label>
         <ng-select class="custom" [items]="paymentMethodList.data"
-                   bindLabel="name"
+                   bindLabel="name" appendTo="body"
                    bindValue="id" id="paymentMethodId"
                    formControlName="paymentMethodId">
         </ng-select>
