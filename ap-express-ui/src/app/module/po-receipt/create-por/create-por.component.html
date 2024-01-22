@@ -12,7 +12,7 @@
         <label for="vendorId" class="form-label">Vendor*</label>
         <ng-select class="custom" [items]="dropDownUtility.vendorList.data"
                    bindLabel="name" (change)="dropDownUtility.getVendorRelatedPoList(f['vendorId'].value)"
-                   bindValue="id" id="vendorId"
+                   bindValue="id" id="vendorId" appendTo="body"
                    formControlName="vendorId">
         </ng-select>
         <div class="invalid" *ngIf="(!f['vendorId'].valid && f['vendorId'].dirty)">Vendor is required.</div>
@@ -22,7 +22,7 @@
         <label for="vendorId" class="form-label">PO Number*</label>
         <ng-select class="custom" [items]="vendorRelatedPOList.data"
                    bindLabel="name" (change)="getPORelatedItemList(f['poId'].value)"
-                   bindValue="id" id="poId"
+                   bindValue="id" id="poId" appendTo="body"
                    formControlName="poId">
         </ng-select>
         <div class="invalid" *ngIf="(!f['poId'].valid && f['poId'].dirty)">Vendor is required.</div>
