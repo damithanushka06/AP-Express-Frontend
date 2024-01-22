@@ -20,7 +20,7 @@
 
       <div class="col-md-4">
         <label for="vendorId" class="form-label">PO Number*</label>
-        <ng-select class="custom" [items]="vendorRelatedPOList.data"
+        <ng-select class="custom" [items]="dropDownUtility.vendorRelatedPOList.data"
                    bindLabel="name" (change)="getPORelatedItemList(f['poId'].value)"
                    bindValue="id" id="poId" appendTo="body"
                    formControlName="poId">

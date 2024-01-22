@@ -35,7 +35,7 @@ export class CreateBillComponent implements OnInit{
   ngOnInit(): void {
     this.billCreateForm = this.formBuilder.group({
       billNo: [null, Validators.required],
-      poId: [null, Validators.required],
+      poId: [null],
       vendorId: [null, Validators.required],
       billDate:[null, Validators.required],
       termId: [null, Validators.required],
@@ -82,8 +82,8 @@ export class CreateBillComponent implements OnInit{
     }
 
     this.billService.createBill(this.billCreateForm.value).subscribe((res: any) => {
-      if (res.errorCode === HttpResponseConstant.HTTP_RESPONSE_SUCCESS) {
-        this.notificationService.successNotification(HttpResponseMessage.PURCHASE_ORDER_CREATE_SUCCESS);
+      if (res.status === HttpResponseConstant.HTTP_RESPONSE_SUCCESS) {
+        this.notificationService.successNotification(HttpResponseMessage.BILL_CREATE_SUCCESS);
         this.router.navigateByUrl('/home/bill/bill-list');
       } else {
         this.notificationService.warningNotification(res.body.errorMessage);
