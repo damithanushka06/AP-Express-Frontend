@@ -22,6 +22,6 @@
     <button [cModalToggle]="staticBackdropModalBillApprove.id" cButtonClose (click)="hideBillApproveModal()"></button>
   </c-modal-header>
   <c-modal-body>
-    <app-bill-approve [billId]="billId" *ngIf="isBillApprove"></app-bill-approve>
+    <app-bill-approve [billId]="billId" *ngIf="isBillApprove" (success)=" getAllBillList(); hideBillApproveModal()"></app-bill-approve>
   </c-modal-body>
 </c-modal>

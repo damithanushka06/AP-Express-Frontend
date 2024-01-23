@@ -24,7 +24,7 @@
 
       <div class="col-3">
         <label for="term" class="form-label row-label">Term</label>
-        <span formControlName="term" id="term" class="row-value">{{billMst.termName}}</span>
+        <span formControlName="term" id="term" class="row-value">{{billMst.paymentTermName}}</span>
       </div>
 
       <div class="col-3">
@@ -143,6 +143,7 @@
     <div class="col-12 row detail-row">
 
     <app-approve-buttons [isRejected]="isRejected" [numberOfWorkFlowLevel]="noOfWorkflowLevel"
+                         (approve)="approveBill()" (approveAndFinalize)="approveBill()"
                          [currentLevel]="currentLevel">
     </app-approve-buttons>
 

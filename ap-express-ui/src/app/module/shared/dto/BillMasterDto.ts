@@ -4,6 +4,7 @@ export class BillMasterDto{
   billAmount!:number;
   billBalance!:number
   billDate!:any;
+  paymentTermName!:any;
   billNo!:any;
   vendorName!:any;
   itemTotal!:any;
