@@ -95,6 +95,9 @@ export class DropdownUtility{
    * Retrieves the po dropdown list related selected vendor.
    */
   getVendorRelatedPoList(vendorId: any) {
+    if(!vendorId){
+      return;
+    }
     // Subscribe to vendor dropdown list
     this.dropdownService.getVendorRelatedPoDropDownList(vendorId).subscribe(
       (response) => {

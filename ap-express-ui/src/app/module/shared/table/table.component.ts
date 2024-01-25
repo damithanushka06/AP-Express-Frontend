@@ -1,6 +1,7 @@
 // Import necessary modules and decorators from Angular core
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AppEnumConstants} from "../../../enum/app-enum-constants";
+import {StorageService} from "../../../services/auth/storage.service";
 
 // Component decorator with selector, template, and style URLs
 @Component({
@@ -41,7 +42,9 @@ export class TableComponent implements OnInit {
   @Output() public approve: EventEmitter<any> = new EventEmitter();
 
   // Constructor for the TableComponent
-  constructor() {
+  public user: any;
+  constructor(public storageService: StorageService) {
+     this.user = this.storageService.getUser();
   }
 
   // Lifecycle hook - ngOnInit
@@ -183,11 +186,11 @@ export class TableComponent implements OnInit {
    * @param obj to active object
    */
   actionButtonList(obj: any) {
-    return this.items.filter(item => this.isActionMatch(item, obj['status']));
+    return this.items.filter(item => this.isActionMatch(item, obj['status'], obj['userId']));
   }
 
-  private isActionMatch(objElement: any, status: string): boolean {
-    return (objElement.status === status || objElement.status === AppEnumConstants.STATUS_COMMON);
+  private isActionMatch(objElement: any, status: string, userId: any): boolean {
+    return ((objElement.status === status &&  this.user.id == userId) || objElement.status === AppEnumConstants.STATUS_COMMON);
   }
 
   clickOnActionButton(rowData: any) {

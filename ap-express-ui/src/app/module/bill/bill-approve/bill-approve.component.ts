@@ -1,8 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {BillMasterDto} from "../../shared/dto/BillMasterDto";
 import {HttpResponseConstant} from "../../../constant/http-response-constant";
 import {BillService} from "../../../services/bill/bill.service";
 import {NotificationService} from "../../../services/notification/notification.service";
+import {HttpResponseMessage} from "../../../constant/http-response-message";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-bill-approve',
@@ -11,12 +13,13 @@ import {NotificationService} from "../../../services/notification/notification.s
 })
 export class BillApproveComponent implements OnInit {
   @Input() billId: any;
+  @Output() success = new EventEmitter();
   public billMst: BillMasterDto = new BillMasterDto();
   isRejected: boolean = false;
   currentLevel!: number;
   noOfWorkflowLevel!: number;
 
-  constructor(public billService: BillService, public notificationService: NotificationService) {
+  constructor(public billService: BillService, public notificationService: NotificationService, public router: Router) {
 
   }
 
@@ -37,6 +40,19 @@ export class BillApproveComponent implements OnInit {
         res.body.billDate = new Date(res.body.billDate).toLocaleDateString();
         res.body.dueDate = new Date(res.body.dueDate? res.body.dueDate: new Date()).toLocaleDateString();
         this.billMst = res.body;
+      } else {
+        this.notificationService.warningNotification(res.body.message);
+      }
+    }, error => {
+      this.notificationService.errorNotification(error);
+    });
+  }
+
+  approveBill() {
+    this.billService.approveBill(this.billId).subscribe((res: any) => {
+      if (res.status === HttpResponseConstant.HTTP_RESPONSE_SUCCESS) {
+        this.notificationService.successNotification(HttpResponseMessage.BILL_APPROVED_SUCCESS);
+        this.success.emit();
       } else {
         this.notificationService.warningNotification(res.body.message);
       }

@@ -64,7 +64,7 @@ export class PaymentListComponent {
   deleteItem(itemId: any) {
     Swal.fire({
       title: 'Are you sure?',
-      text: 'Void the selected PO',
+      text: 'Void the selected Payment',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Yes, go ahead.',

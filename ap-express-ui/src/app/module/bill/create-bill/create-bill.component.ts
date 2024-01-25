@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {DropdownUtility} from "../../../common-utility/dropdown/dropdown-utility";
 import {DropdownService} from "../../../services/dropdown/dropdown.service";
@@ -8,13 +8,14 @@ import {NotificationService} from "../../../services/notification/notification.s
 import {HttpResponseConstant} from "../../../constant/http-response-constant";
 import {HttpResponseMessage} from "../../../constant/http-response-message";
 import {BillService} from "../../../services/bill/bill.service";
+import {FormValidation} from "../../../common-utility/form/form-validation";
 
 @Component({
   selector: 'app-create-bill',
   templateUrl: './create-bill.component.html',
   styleUrls: ['./create-bill.component.scss']
 })
-export class CreateBillComponent {
+export class CreateBillComponent implements OnInit{
   billCreateForm!: FormGroup;
   public dropDownUtility: DropdownUtility = new DropdownUtility(this.dropdownService);
   files: any = [];
@@ -34,7 +35,7 @@ export class CreateBillComponent {
   ngOnInit(): void {
     this.billCreateForm = this.formBuilder.group({
       billNo: [null, Validators.required],
-      poId: [null, Validators.required],
+      poId: [null],
       vendorId: [null, Validators.required],
       billDate:[null, Validators.required],
       termId: [null, Validators.required],
@@ -66,17 +67,26 @@ export class CreateBillComponent {
    * Submits the bill creation form.
    */
   submitForm() {
+    FormValidation(this.billCreateForm);
+    if(this.billCreateForm.invalid){
+      return;
+    }
     this.billCreateForm.get('files')?.patchValue(this.files);
-    const billDate = new Date(this.billCreateForm.value.billDate);
-    const dueDate = new Date(this.billCreateForm.value.dueDate);
-    this.billCreateForm.get('billDate')?.patchValue(billDate);
-    this.billCreateForm.get('dueDate')?.patchValue(dueDate);
+    if(this.billCreateForm.value.billDate){
+      const billDate = new Date(this.billCreateForm.value.billDate);
+      this.billCreateForm.get('billDate')?.patchValue(billDate);
+    }
+    if(this.billCreateForm.value.dueDate){
+      const dueDate = new Date(this.billCreateForm.value.dueDate);
+      this.billCreateForm.get('dueDate')?.patchValue(dueDate);
+    }
+
     this.billService.createBill(this.billCreateForm.value).subscribe((res: any) => {
       if (res.status === HttpResponseConstant.HTTP_RESPONSE_SUCCESS) {
-        this.notificationService.successNotification(HttpResponseMessage.PURCHASE_ORDER_CREATE_SUCCESS);
+        this.notificationService.successNotification(HttpResponseMessage.BILL_CREATE_SUCCESS);
         this.router.navigateByUrl('/home/bill/bill-list');
       } else {
-        this.notificationService.warningNotification(res.body.message);
+        this.notificationService.warningNotification(res.body.errorMessage);
       }
     }, error => {
       this.notificationService.errorNotification(error);

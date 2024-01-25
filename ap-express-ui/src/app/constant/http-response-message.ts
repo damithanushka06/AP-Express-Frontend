@@ -34,6 +34,7 @@ export class HttpResponseMessage{
   public static BILL_CREATE_SUCCESS = 'Bill created successfully.';
   public static BILL_UPDATED_SUCCESS = 'Bill updated successfully.';
   public static BILL_DELETED_SUCCESS = 'Bill deleted successfully.';
+  public static BILL_APPROVED_SUCCESS = 'Bill approved successfully.';
 
 // payment
   public static PAYMENT_CREATE_SUCCESS = 'Payment created successfully.';

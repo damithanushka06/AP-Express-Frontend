@@ -47,6 +47,17 @@ export class BillService {
   }
 
   /**
+   * Approve bill
+   * @param billId  bill master id
+   */
+  approveBill(billId: number) {
+    return this.httpClient.post(
+      AppConstant.BASE_URL + '/bill/bill_approve',{},
+      { observe: 'response', params: { billId }, withCredentials: true }
+    );
+  }
+
+  /**
    * Deletes the bill with the given ID.
    * @param billId The ID of the bill to delete.
    */

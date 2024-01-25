@@ -36,6 +36,7 @@ export class CreatePorComponent implements OnInit {
       poId: [null, Validators.required],
       receivedDate: [null, Validators.required],
       totalAmount: [null, Validators.required],
+      total:[null],
       porItemInformationList: this.formBuilder.array([]),
     });
     this.dropDownUtility.getVendorList();
@@ -87,9 +88,10 @@ export class CreatePorComponent implements OnInit {
           this.itemInformation.controls[i].get('originalQty')?.patchValue(this.poItemInformation[i].qty);
           this.itemInformation.controls[i].get('remainingQty')?.patchValue(this.poItemInformation[i].qty);
           this.itemInformation.controls[i].get('itemNumber')?.patchValue(this.poItemInformation[i].itemNumberStr);
+          this.itemInformation.controls[i].get('lineAmount')?.patchValue(this.poItemInformation[i].itemNumberStr);
         }
         this.itemInformation.patchValue(this.poItemInformation);
-        this.porCreateForm.get('totalAmount')?.patchValue(this.totalAmount)
+
 
       });
   }
@@ -137,10 +139,9 @@ export class CreatePorComponent implements OnInit {
       const lineAmount = unitPrice * receivedQty;
       item.get('lineAmount')?.patchValue(lineAmount);
     }
-
     this.totalAmount = 0;
     this.itemInformation.controls.forEach((value: any) => {
-      this.totalAmount += parseFloat(value.get('lineAmount')?.value) || 0;
+      this.totalAmount += parseFloat(value.value.lineAmount) ? parseFloat(value.value.lineAmount): 0;
     });
 
     this.porCreateForm.get('total')?.patchValue(this.totalAmount);

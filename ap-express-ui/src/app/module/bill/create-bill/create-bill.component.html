@@ -19,13 +19,12 @@
       </div>
 
       <div class="col-md-4">
-        <label for="vendorId" class="form-label">PO Number*</label>
+        <label for="vendorId" class="form-label">PO Number</label>
         <ng-select class="custom" [items]="dropDownUtility.vendorRelatedPOList.data"
                    bindLabel="name"
                    bindValue="id" id="poId"
                    formControlName="poId">
         </ng-select>
-        <div class="invalid" *ngIf="(!f['vendorId'].valid && f['vendorId'].dirty)">Vendor is required.</div>
       </div>
 
         <div class="col-4 p-fluid">
