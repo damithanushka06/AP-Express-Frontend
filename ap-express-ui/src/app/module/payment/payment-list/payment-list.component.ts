@@ -17,7 +17,7 @@ export class PaymentListComponent {
   public paymentId: any;
   items = [
     {label: 'Edit', icon: 'pi pi-pencil', id: 3},
-    {label: 'Delete', icon: 'pi pi-trash', id: 4},
+    {label: 'Void', icon: 'pi pi-trash', id: 4},
   ];
 
   constructor(public paymentService: PaymentService, public notificationService: NotificationService,

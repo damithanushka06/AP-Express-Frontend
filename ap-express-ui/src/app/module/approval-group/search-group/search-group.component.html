@@ -1,4 +1,5 @@
 <app-table [setting]="groupSetting" [data]="approvalGroupList" (id)="groupId = $event"
+           [items]="items"
            (delete)="deleteApprovalGroup(groupId)" (edit)="showModal();isEditGroup =true"
 ></app-table>
 
